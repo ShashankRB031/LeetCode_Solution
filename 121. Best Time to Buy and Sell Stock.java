@@ -1,14 +1,22 @@
 class Solution {
-    public int maxProfit(int[] prices) {
-        int min = prices[0];
-        int profit = 0;
-        
-        for(int i=0 ; i<prices.length ; i++){
-            if(prices[i] < min){
-                min = prices[i];
-            }
-            profit = Math.max(profit, prices[i] - min);
+    public int[][] matrixReshape(int[][] mat, int r, int c) {
+        int m = mat.length;
+        int n = mat[0].length;
+        if (m * n != r * c) {
+            return mat;
         }
-        return profit;
+        int[][] result = new int[r][c];
+        int row = 0, col = 0;
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                result[row][col] = mat[i][j];
+                col++;
+                if (col == c) {
+                    col = 0;
+                    row++;
+                }
+            }
+        }
+        return result;
     }
 }
