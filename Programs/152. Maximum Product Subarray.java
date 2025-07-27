@@ -4,18 +4,18 @@ class Solution {
             return 0;
         }
 
-        int min = nums[0];
-        int max = nums[0];
-        int result = max;
+        int maxProd = nums[0];
+        int minProd = nums[0];
+        int result = nums[0];
 
         for (int i = 1; i < nums.length; i++) {
             int cur = nums[i];
 
-            int temp = Math.max(cur, Math.max(max * cur, min * cur));
-            min = Math.min(cur, Math.min(min * cur, max * cur));
-            max = temp;
+            int tempMax = Math.max(cur, Math.max(maxProd * cur, minProd * cur));
+            minProd = Math.min(cur, Math.min(minProd * cur, maxProd * cur));
+            maxProd = tempMax;
 
-            result = Math.max(result, max);
+            result = Math.max(result, maxProd);
         }
 
         return result;
